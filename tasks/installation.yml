@@ -47,7 +47,7 @@
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
 
 - name: installation | make configure
-  command: "./configure --prefix={{ git_path }}"
+  command: ./configure --prefix={{ git_path }}
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
 
 - name: installation | make
