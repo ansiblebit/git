@@ -10,6 +10,10 @@
       when: playbook_python2 is defined and
             playbook_python2
 
+    - name: update packages
+      action: "{{ ansible_pkg_mgr }} ache_valid_time=3600 update_cache=yes upgrade=dist"
+      become: yes
+
 
 - name: tests play
   hosts: "{{ vagrant_box }}"
