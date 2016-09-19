@@ -1,11 +1,15 @@
 ---
-# file: primogen/tests/tasks
+# file: git/tests/tasks
 #
 # Test tasks to verify role execution.
 #
 
-- debug:
-    msg="You need to define tests here!"
-  tags:
-    - debug
-    - test
+- name: is git installed?
+  shell: which git
+  changed_when: no
+
+- name: verify git version
+  shell: git --version
+  register: test
+  changed_when: no
+  failed_when: test is defined and test.stdout.find("git version {{ git_version }}") == -1
