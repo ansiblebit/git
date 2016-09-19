@@ -1,5 +1,12 @@
 ---
-# file: primogen/defaults/main.yml
+# file: git/defaults/main.yml
 #
 # defaults file
 #
+
+git_dir_src: /usr/local/src
+git_path: /usr/local
+git_version: 1.9.1
+
+git_tarball: "v{{ git_version }}.tar.gz"
+git_prefix: "git-v{{ git_version }}"

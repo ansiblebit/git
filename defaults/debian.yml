@@ -1,0 +1,12 @@
+---
+# file: git/defaults/debian.yml
+#
+# default variables for Debian-based Linux distributions.
+#
+
+git_build_dependencies:
+  - libcurl4-gnutls-dev
+  - libexpat1-dev
+  - libssl-dev
+  - libz-dev
+  - gettext

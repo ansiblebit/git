@@ -1,0 +1,13 @@
+---
+# file: git/defaults/redhat.yml
+#
+# default variables for Redhat-based Linux distributions.
+#
+
+git_build_dependencies:
+  - curl-devel
+  - expat-devel
+  - gettext-devel
+  - openssl-devel
+  - perl-devel
+  - zlib-devel
