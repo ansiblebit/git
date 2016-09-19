@@ -1,7 +1,7 @@
 ---
 # file: git/defaults/debian.yml
 #
-# default variables for Debian-based Linux distributions.
+# default variables for Ubuntu distribution.
 #
 
 git_build_dependencies:
