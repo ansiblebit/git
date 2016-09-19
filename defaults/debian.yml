@@ -5,6 +5,7 @@
 #
 
 git_build_dependencies:
+  - autoconf
   - libcurl4-gnutls-dev
   - libexpat1-dev
   - libssl-dev
