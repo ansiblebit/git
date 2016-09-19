@@ -46,6 +46,10 @@
   command: /usr/bin/make configure
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
 
+- name: installation | make configure
+  command: "./configure --prefix={{ git_path }}"
+    chdir="{{ git_dir_src }}/{{ git_prefix }}/"
+
 - name: installation | make
   command: /usr/bin/make -j 4
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
