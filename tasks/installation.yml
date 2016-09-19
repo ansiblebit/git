@@ -1,0 +1,50 @@
+---
+# file: git/tasks/installation.yml
+#
+# installation tasks.
+#
+
+- name: installation | download source tarball
+  get_url:
+    url="https://github.com/git/git/archive/{{ git_tarball }}"
+    dest="{{ git_dir_src }}"
+    mode=0440
+  become: yes
+
+- name: installation | set tarball ownership
+  file:
+    path="{{ git_dir_src }}/{{ git_tarball }}"
+    state=file
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
+  become: yes
+
+- name: installation | ensure unarchive directory exists
+  file:
+    path="{{ git_dir_src }}/{{ git_prefix }}"
+    state=directory
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
+  become: yes
+
+- name: installation | unpack tarball
+  unarchive:
+    src="{{ git_dir_src }}/{{ git_tarball }}"
+    dest="{{ git_dir_src }}"
+    copy=no
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
+  become: yes
+
+- name: installation | configure
+  command: ./configure --prefix={{ git_path }}
+    chdir="{{ git_dir_src }}/{{ git_prefix }}"
+
+- name: installation | make
+  command: /usr/bin/make -j 4
+    chdir="{{ git_dir_src }}/{{ git_prefix }}/"
+
+- name: installation | make install
+  command: /usr/bin/make install
+    chdir="{{ git_dir_src }}/{{ git_prefix }}/"
+  become: yes
