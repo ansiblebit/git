@@ -7,9 +7,14 @@
 - name: is git installed?
   shell: which git
   changed_when: no
+  environment:
+    PATH: "{{ git_path }}/bin"
+
 
 - name: verify git version
   shell: git --version
   register: test
   changed_when: no
   failed_when: test is defined and test.stdout.find("git version {{ git_version }}") == -1
+  environment:
+    PATH: "{{ git_path }}/bin"
