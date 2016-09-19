@@ -1,8 +1,15 @@
 ---
-# file: primogen/tasks/main.yml
+# file: git/tasks/main.yml
 #
 # tasks file
 #
+
+- name: include OS family/distribution specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "../defaults/{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+    - "../defaults/{{ ansible_distribution | lower }}.yml"
+    - "../defaults/{{ ansible_os_family | lower }}.yml"
 
 - include: debug.yml
   when: debug | default(false)
@@ -11,6 +18,5 @@
 - include: validation.yml
   tags: validation
 
-- debug: >
-    msg="invoked"
-
+- include: installation.yml
+  tags: installation
