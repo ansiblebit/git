@@ -4,9 +4,14 @@
 # installation tasks.
 #
 
+- name: install build dependencies
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+    - "{{ git_build_dependencies }}"
+
 - name: installation | download source tarball
   get_url:
-    url="https://github.com/git/git/archive/{{ git_tarball }}"
+    url="https://codeload.github.com/git/git/tar.gz/v{{ git_version }}"
     dest="{{ git_dir_src }}"
     mode=0440
   become: yes
@@ -36,9 +41,9 @@
     group="{{ ansible_env.USER }}"
   become: yes
 
-- name: installation | configure
-  command: ./configure --prefix={{ git_path }}
-    chdir="{{ git_dir_src }}/{{ git_prefix }}"
+- name: installation | make configure
+  command: /usr/bin/make configure
+    chdir="{{ git_dir_src }}/{{ git_prefix }}/"
 
 - name: installation | make
   command: /usr/bin/make -j 4
