@@ -1,13 +1,17 @@
 ---
-# file: primogen/tasks/validation.yml
+# file: git/tasks/validation.yml
 #
 # validation tasks.
 #
 
-- name: ensure mandatory variables are set
+- name: validation | ensure mandatory variables are set
   fail:
     msg="{{ item }} is a mandatory variable"
   when: "{{ item }} is not defined"
   with_items:
-    - debug
-
+    - git_build_dependencies
+    - git_dir_src
+    - git_path
+    - git_prefix
+    - git_tarball
+    - git_version
