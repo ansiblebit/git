@@ -4,16 +4,17 @@
 # Test tasks to verify role execution.
 #
 
-- name: is git installed?
-  shell: which git
+- name: verify git is installed
+  shell: /bin/which git
+  register: task_git_installed
   changed_when: no
   environment:
     PATH: "${PATH}:{{ git_path }}/bin"
 
 - name: verify git version
   shell: git --version
-  register: test
+  register: task_git_version
   changed_when: no
-  failed_when: test is defined and test.stdout.find("git version {{ git_version }}") == -1
+  failed_when: task_git_version is defined and task_git_version.stdout.find("git version {{ git_version }}") == -1
   environment:
     PATH: "{{ git_path }}/bin"
