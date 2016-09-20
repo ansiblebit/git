@@ -55,6 +55,9 @@ None.
 ## Playbooks
 
     - hosts: servers
+      vars:
+        git_version: 1.9.1
+
       roles:
          - role: ansiblebit.git
 

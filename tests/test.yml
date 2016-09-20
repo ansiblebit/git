@@ -17,6 +17,7 @@
 
   vars:
     debug: yes
+    git_version: 1.9.1
 
   roles:
     - role: git

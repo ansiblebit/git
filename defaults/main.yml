@@ -6,7 +6,6 @@
 
 git_dir_src: /usr/local/src
 git_path: /usr/local
-git_version: 1.9.1
 
 git_tarball: "git-{{ git_version }}.tar.gz"
 git_prefix: "git-{{ git_version }}"
