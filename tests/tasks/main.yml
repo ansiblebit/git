@@ -8,8 +8,7 @@
   shell: which git
   changed_when: no
   environment:
-    PATH: "{{ git_path }}/bin"
-
+    PATH: "${PATH}:{{ git_path }}/bin"
 
 - name: verify git version
   shell: git --version
