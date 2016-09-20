@@ -5,6 +5,7 @@
 #
 
 git_build_dependencies:
+  - autoconf
   - curl-devel
   - expat-devel
   - gettext-devel
