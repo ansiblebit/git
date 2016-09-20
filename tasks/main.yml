@@ -18,13 +18,23 @@
 - include: validation.yml
   tags: validation
 
+- name: verify git is installed
+  shell: /bin/which git
+  register: task_git_installed
+  changed_when: no
+  failed_when: no
+  environment:
+    PATH: "${PATH}:{{ git_path }}/bin"
+
 - name: verify git version
   shell: git --version
-  register: test
+  register: task_git_version
   changed_when: no
+  failed_when: no
+  when: task_git_installed
   environment:
     PATH: "{{ git_path }}/bin"
 
 - include: installation.yml
-  when: test is defined and test.stdout.find("git version {{ git_version }}") == -1
+  when: task_git_installed.rc != 0 or task_git_version.stdout.find("git version {{ git_version }}") == -1
   tags: installation
