@@ -7,9 +7,9 @@
 - name: include OS family/distribution specific variables
   include_vars: "{{ item }}"
   with_first_found:
-    - "../defaults/{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
-    - "../defaults/{{ ansible_distribution | lower }}.yml"
-    - "../defaults/{{ ansible_os_family | lower }}.yml"
+    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}.yml"
+    - "{{ ansible_distribution | lower }}.yml"
+    - "{{ ansible_os_family | lower }}.yml"
 
 - include: debug.yml
   when: debug | default(false)
