@@ -6,8 +6,7 @@
 
 - name: install build dependencies
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
-  with_items:
-    - "{{ git_build_dependencies }}"
+  with_items: "{{ git_build_dependencies }}"
   become: yes
 
 - name: installation | download source tarball

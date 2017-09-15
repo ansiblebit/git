@@ -36,5 +36,5 @@
     PATH: "{{ git_path }}/bin"
 
 - include: installation.yml
-  when: (task_git_installed is defined and task_git_installed.rc != 0) or (task_git_version is defined and task_git_version.stdout.find("git version {{ git_version }}") == -1)
+  when: (task_git_installed is defined and task_git_installed.rc != 0) or (task_git_version is defined and task_git_version.stdout.find("git version "+ git_version) == -1)
   tags: installation
