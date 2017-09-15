@@ -32,10 +32,10 @@
   changed_when: no
   failed_when: no
   when: task_git_installed and
-        not ansible_check_mode | default(false)
+        (ansible_check_mode is defined and not ansible_check_mode)
   environment:
     PATH: "{{ git_path }}/bin"
 
 - include: installation.yml
-  when: (task_git_installed is defined and task_git_installed.rc != 0) or (task_git_version is defined and task_git_version.stdout.find("git version "+ git_version) == -1)
+  when: (task_git_installed is defined and task_git_installed.rc is defined and task_git_installed.rc != 0) or (task_git_version is defined and task_git_version.stdout is defined and task_git_version.stdout.find("git version "+ git_version) == -1)
   tags: installation
