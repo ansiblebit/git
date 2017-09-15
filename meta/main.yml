@@ -17,11 +17,9 @@ galaxy_info:
     - name: Debian
       versions:
         - jessie
-        - wheezy
     - name: Ubuntu
       versions:
         - xenial
-        - vivid
         - trusty
         - precise
   galaxy_tags:
