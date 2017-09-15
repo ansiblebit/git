@@ -21,7 +21,7 @@ vagrant:
       ip: 192.168.121.1
 
   centos66-64.vagrant.dev:
-    enabled: true
+    enabled: false
     box: hansode/centos-6.6-x86_64
     network:
       name: private_network
