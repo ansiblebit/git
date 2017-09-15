@@ -15,6 +15,9 @@
   shell: git --version
   register: task_git_version
   changed_when: no
-  failed_when: task_git_version is defined and task_git_version.stdout.find("git version {{ git_version }}") == -1
+  failed_when: task_git_installed is defined and
+               task_git_version is defined and
+               task_git_version.stdout is defined and
+               task_git_version.stdout.find("git version {{ git_version }}") == -1
   environment:
     PATH: "{{ git_path }}/bin"

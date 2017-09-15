@@ -18,6 +18,7 @@
 
   vars:
     debug: yes
+    git_path: /usr/local
     git_version: 1.9.1
 
   roles:
