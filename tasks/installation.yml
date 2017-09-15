@@ -46,7 +46,7 @@
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
   when: not ansible_check_mode
 
-- name: installation | make configure
+- name: installation | ./configure
   command: ./configure --prefix={{ git_path }}
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
   when: not ansible_check_mode
