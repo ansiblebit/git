@@ -44,20 +44,20 @@
 - name: installation | make configure
   command: /usr/bin/make configure
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode | default(false)
+  when: ansible_check_mode is defined and not ansible_check_mode
 
 - name: installation | ./configure
   command: ./configure --prefix={{ git_path }}
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode | default(false)
+  when: ansible_check_mode is defined and not ansible_check_mode
 
 - name: installation | make
   command: /usr/bin/make -j 4
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode | default(false)
+  when: ansible_check_mode is defined and not ansible_check_mode
 
 - name: installation | make install
   command: /usr/bin/make install
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode | default(false)
+    when: ansible_check_mode is defined and not ansible_check_mode
   become: yes
