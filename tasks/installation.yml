@@ -6,7 +6,8 @@
 
 - name: install build dependencies
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
-  with_items: "{{ git_build_dependencies }}"
+  with_items:
+    - git_build_dependencies
   become: yes
 
 - name: installation | download source tarball
@@ -44,20 +45,20 @@
 - name: installation | make configure
   command: /usr/bin/make configure
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode
+  when: not ansible_check_mode | default(false)
 
 - name: installation | ./configure
   command: ./configure --prefix={{ git_path }}
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode
+  when: not ansible_check_mode | default(false)
 
 - name: installation | make
   command: /usr/bin/make -j 4
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode
+  when: not ansible_check_mode | default(false)
 
 - name: installation | make install
   command: /usr/bin/make install
     chdir="{{ git_dir_src }}/{{ git_prefix }}/"
-  when: not ansible_check_mode
+  when: not ansible_check_mode | default(false)
   become: yes
