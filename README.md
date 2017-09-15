@@ -13,6 +13,7 @@
 [Ansible][ansible] role to install [git][git].
 
 
+
 ## Tests
 
 | Family | Distribution | Version | Test Status |
@@ -27,6 +28,7 @@
 | RedHat | Centos  | 7       | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
 | RedHat | CentOS  | 6.6     | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
 | RedHat | CentOS  | 6.4     | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
+
 
 
 ## Requirements
@@ -47,6 +49,9 @@ it may be a good idea to mention in this section that the boto package is requir
 - **git_prefix**: the filename prefix of the [git][git] tarball.
 - **git_tarball**: the filename for the [git][git] tarball.
 - **git_version**: the version to be installed.
+
+
+- **debug**: flag to run debug tasks.
 
 
 ## Dependencies
@@ -107,11 +112,5 @@ $ vagrant ssh trusty64.vagrant.dev
 ```
 
 
-## Author Information
-
-- [steenzout][steenzout]
-
-
 [ansible]:  https://ansible.com/    "Ansible"
 [git]:  https://git-scm.com/    "git"
-[steenzout]:    https://github.com/steenzout/   "Pedro Salgado"

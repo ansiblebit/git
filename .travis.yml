@@ -4,6 +4,10 @@ sudo: yes
 matrix:
   include:
     - python: 2.7
+      env: TOXENV=py27-ansible23
+    - python: 2.7
+      env: TOXENV=py27-ansible22
+    - python: 2.7
       env: TOXENV=py27-ansible21
     - python: 2.7
       env: TOXENV=py27-ansible20
@@ -15,12 +19,23 @@ script:
   - tox
 
 notifications:
-    webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
+  slack:
+    template:
+      - "%{repository_name}@%{branch} %{commit} : [%{build_number}] %{result} "
+      - "%{build_url}"
+      - "'%{commit_subject}' by %{author}"
+      - "%{elapsed_time} : %{duration}"
+      - "%{message}"
+    rooms:
+      secure: NnbcOuvDwjTK1orHxC/LyRhuRZghPt8kliCGBpvBh4exKrr8XjFMoStAOKwu/9KzKDeKzufDTVP4QGNYVp7aQZnTQwJapNTShA47ffAKVAyw9qjGzmOofp3yCo7G9qvAzfeL+E7+4ssnH6Kp1wq1GT79deevl15IjAkzYiRTlUk=
+    on_success: always
+    on_failure: always
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
 
 before_cache:
-  - rm -f ${HOME}/.cache/pip/log/debug.log
+  - "find ${HOME}/.pip -name log -o -name __pycache__ -type d | xargs -I {} rm -rf {}"
 
 cache:
   directories:
-    - ${HOME}/.cache/pip
-
+    - "${HOME}/.cache/pip"
